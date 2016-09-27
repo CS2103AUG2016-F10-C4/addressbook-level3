@@ -50,6 +50,19 @@ Examples:
 * `find Betsy Tim John`<br>
   Returns Any person having names `Betsy`, `Tim`, or `John`
 
+## Finding all persons containing any keyword in their tag: `find-tag`
+Finds persons whose tags contain any of the given keywords.<br>
+Format: `find-tag KEYWORD [MORE_KEYWORDS]`
+
+> The search is case sensitive, the order of the keywords does not matter, only the tag is searched, 
+and persons matching at least one keyword will be returned (i.e. `OR` search).
+
+Examples: 
+* `find-tag friend`<br>
+  Returns `friend` but not `Friend`
+* `find-tag friend CCA`<br>
+  Returns Any person having tags `friend` or `CCA`
+
 ## Deleting a person : `delete`
 Deletes the specified person from the address book. Irreversible.<br>
 Format: `delete INDEX`
