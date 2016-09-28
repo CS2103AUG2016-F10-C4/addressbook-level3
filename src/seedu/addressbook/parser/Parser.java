@@ -48,8 +48,9 @@ public class Parser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
+     * @throws IllegalValueException 
      */
-    public Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput)  {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -79,6 +80,9 @@ public class Parser {
 
             case ViewAllCommand.COMMAND_WORD:
                 return prepareViewAll(arguments);
+                
+            case RemoveTag.COMMAND_WORD:
+            	return prepareDeleteTag(arguments);
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
@@ -87,6 +91,16 @@ public class Parser {
             default:
                 return new HelpCommand();
         }
+    }
+    private Command prepareDeleteTag(String args){
+    	Command deleteTag;
+    	try {
+			deleteTag=new RemoveTag(args);
+			return deleteTag;
+		} catch (IllegalValueException e) {
+			return new IncorrectCommand(e.getMessage());
+		}
+   
     }
 
     /**
