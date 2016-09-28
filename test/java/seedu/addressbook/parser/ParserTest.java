@@ -292,6 +292,7 @@ public class ParserTest {
      * @param input to be parsed
      * @param expectedCommandClass expected class of returned command
      * @return the parsed command object
+     * 
      */
     private <T extends Command> T parseAndAssertCommandType(String input, Class<T> expectedCommandClass) {
         final Command result = parser.parseCommand(input);
